@@ -64,13 +64,14 @@ function App() {
       <div className="images-field">
           {
             images.map((image)=>(
-                <div className="image">
+                <div className="image" key={image.id}>
+                  <a href={image.urls.regular}>
                   <img 
-                  key={image.id} 
                   src={image.urls.small} 
                   alt={image.alt_description}
                   loading="lazy"
                 />
+                  </a>
                 </div>
             ))
           }

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {Form} from 'react-bootstrap';
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css';
 import './index.css';
 import axios from 'axios';
 
@@ -11,6 +13,7 @@ function App() {
   const [totalPages, setTotalPages] = useState(null);
   const [page, setPage] = useState(1);
   const [errMsg, setErrMsg] = useState("");
+  const [show, setShow] = useState(false)
 
   useEffect(()=>{
     fetchImages();
@@ -45,8 +48,22 @@ function App() {
     searchInput.current.value = selection;
     resetSearch();
   }
+
+  const toggleShow = ()=>{
+    setShow(!show);
+  }
   return (
     <div className="container">
+      <div className={show?"slider show-slider":"slider"}>
+      <button className="btn" onClick={toggleShow}>x</button>
+        <Slide className="slide">
+          {images.map((fadeImage, index) => (
+            <div key={index}>
+              <img className="slide-img" src={fadeImage.urls.regular} />
+            </div>
+          ))}
+        </Slide>
+      </div>
       <h1 className="title">Image Search</h1>
       {errMsg && <p className="error-message">{errMsg}</p>}
       {totalPages === 0 && <p className="error-message">Image Not Found!</p>}
@@ -79,7 +96,9 @@ function App() {
       <div className="buttons">
         {page > 1 && <button onClick={()=>setPage(page-1)}>Previous</button>}
         {page < totalPages && <button onClick={()=>setPage(page+1)}>Next</button>}
+        {totalPages > 0 && <button onClick={toggleShow}>Slide Show</button>}
       </div>
+      
     </div>
   )
 }

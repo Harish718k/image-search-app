@@ -69,6 +69,50 @@ form{
   cursor: pointer;
 }
 
+.slider{
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.199);
+  backdrop-filter: blur(4px);
+  transition: 0.3s ease-in-out;
+}
+
+.slider .btn{
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  border-radius: 50%;
+  padding: 0px 8px;
+  border: none;
+  color: #ff0000;
+  background-color: #ffffffb6;
+  z-index: 100;
+}
+
+.slider > div{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 30px 0px;
+}
+
+.slide-img{
+  width: 80%;
+  height: 600px;
+  object-fit: contain;
+}
+
+.show-slider{
+  display: block;
+}
+
 @media screen and (max-width: 1200px) {
   .images-field{
     width: 100%;
